@@ -1,17 +1,14 @@
-import React, { lazy } from 'react'
+import React from 'react'
 
 import {
   CAvatar,
   CButton,
-  CButtonGroup,
   CCard,
   CCardBody,
   CCardFooter,
-  CCardHeader,
   CCol,
   CFormControl,
   CFormCheck,
-  CFormLabel,
   CFormRange,
   CInputGroup,
   CProgress,
@@ -22,19 +19,18 @@ import {
   CTableHead,
   CTableHeaderCell,
   CTableRow,
-  CWidgetSimple,
 } from '@coreui/react'
-import { CChartLine } from '@coreui/react-chartjs'
-import { getStyle, hexToRgba } from '@coreui/utils'
+// import { CChartLine } from '@coreui/react-chartjs'
+// import { getStyle, hexToRgba } from '@coreui/utils'
 import CIcon from '@coreui/icons-react'
 
-const WidgetsDropdown = lazy(() => import('../components/widgets/WidgetsDropdown.js'))
-const WidgetsBrand = lazy(() => import('../components/widgets/WidgetsBrand.js'))
+// const WidgetsDropdown = lazy(() => import('../components/widgets/WidgetsDropdown.js'))
+// const WidgetsBrand = lazy(() => import('../components/widgets/WidgetsBrand.js'))
 
 const Dashboard = () => {
-  const random = (min, max) => {
-    return Math.floor(Math.random() * (max - min + 1) + min)
-  }
+  // const random = (min, max) => {
+  //   return Math.floor(Math.random() * (max - min + 1) + min)
+  // }
 
   return (
     <>
@@ -126,10 +122,9 @@ const Dashboard = () => {
                       <CFormCheck id="flexCheckDefault" />
                     </CTableDataCell>
                     <CTableDataCell className="text-center">
-                      <CIcon size="xl" name="cib-cc-mastercard" />
+                      <CIcon size="xl" name="cib-linkedin" />
                     </CTableDataCell>
                     <CTableDataCell>
-                      {/* <CFormLabel htmlFor="customRange1">Lead Interest</CFormLabel> */}
                       <CFormRange id="customRange1" />
                     </CTableDataCell>
                   </CTableRow>
@@ -162,7 +157,7 @@ const Dashboard = () => {
                       <CFormCheck id="flexCheckDefault" />
                     </CTableDataCell>
                     <CTableDataCell className="text-center">
-                      <CIcon size="xl" name="cib-cc-visa" />
+                      <CIcon size="xl" name="cib-linkedin" />
                     </CTableDataCell>
                     <CTableDataCell>
                       <CFormRange id="customRange1" />
@@ -197,7 +192,7 @@ const Dashboard = () => {
                       <CFormCheck id="flexCheckDefault" />
                     </CTableDataCell>
                     <CTableDataCell className="text-center">
-                      <CIcon size="xl" name="cib-cc-stripe" />
+                      <CIcon size="xl" name="cib-linkedin" />
                     </CTableDataCell>
                     <CTableDataCell>
                       <CFormRange id="customRange1" />
@@ -232,7 +227,7 @@ const Dashboard = () => {
                       <CFormCheck id="flexCheckDefault" />
                     </CTableDataCell>
                     <CTableDataCell className="text-center">
-                      <CIcon size="xl" name="cib-cc-paypal" />
+                      <CIcon size="xl" name="cib-linkedin" />
                     </CTableDataCell>
                     <CTableDataCell>
                       {/* <CFormLabel htmlFor="customRange1">Lead Interest</CFormLabel> */}
@@ -268,7 +263,7 @@ const Dashboard = () => {
                       <CFormCheck id="flexCheckDefault" />
                     </CTableDataCell>
                     <CTableDataCell className="text-center">
-                      <CIcon size="xl" name="cib-cc-apple-pay" />
+                      <CIcon size="xl" name="cib-linkedin" />
                     </CTableDataCell>
                     <CTableDataCell>
                       <CFormRange id="customRange1" />
@@ -303,7 +298,7 @@ const Dashboard = () => {
                       <CFormCheck id="flexCheckDefault" />
                     </CTableDataCell>
                     <CTableDataCell className="text-center">
-                      <CIcon size="xl" name="cib-cc-amex" />
+                      <CIcon size="xl" name="cib-linkedin" />
                     </CTableDataCell>
                     <CTableDataCell>
                       {/* <CFormLabel htmlFor="customRange1">Lead Interest</CFormLabel> */}
