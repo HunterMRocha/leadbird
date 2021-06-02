@@ -20,13 +20,9 @@ class App extends Component {
       <HashRouter>
         <React.Suspense fallback={loading}>
           <Switch>
-            <Route
-              exact
-              path="/register"
-              name="Register Page"
-              render={(props) => <Register {...props} />}
-            />
-            <Route path="/" name="Home" render={(props) => <DefaultLayout {...props} />} />
+            <Route path="./views/pages/register/Register" name="Register" render={(props) => <DefaultLayout {...props} />} />
+            <Route path="" name="Home" render={(props) => <DefaultLayout {...props} />} />
+            {/* <Route path="./views/dashboard/Dashboard" name="Dashboard" render={(props) => <DefaultLayout {...props} />} /> */}
           </Switch>
         </React.Suspense>
       </HashRouter>
