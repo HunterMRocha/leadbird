@@ -1,17 +1,16 @@
-import React, { lazy } from 'react'
+import React from 'react'
 
 import {
   CAvatar,
   CButton,
-  CButtonGroup,
   CCard,
   CCardBody,
   CCardFooter,
-  CCardHeader,
   CCol,
+  CFormControl,
   CFormCheck,
-  CFormLabel,
   CFormRange,
+  CInputGroup,
   CProgress,
   CRow,
   CTable,
@@ -20,19 +19,18 @@ import {
   CTableHead,
   CTableHeaderCell,
   CTableRow,
-  CWidgetSimple,
 } from '@coreui/react'
-import { CChartLine } from '@coreui/react-chartjs'
-import { getStyle, hexToRgba } from '@coreui/utils'
+// import { CChartLine } from '@coreui/react-chartjs'
+// import { getStyle, hexToRgba } from '@coreui/utils'
 import CIcon from '@coreui/icons-react'
 
-const WidgetsDropdown = lazy(() => import('../components/widgets/WidgetsDropdown.js'))
-const WidgetsBrand = lazy(() => import('../components/widgets/WidgetsBrand.js'))
+// const WidgetsDropdown = lazy(() => import('../components/widgets/WidgetsDropdown.js'))
+// const WidgetsBrand = lazy(() => import('../components/widgets/WidgetsBrand.js'))
 
 const Dashboard = () => {
-  const random = (min, max) => {
-    return Math.floor(Math.random() * (max - min + 1) + min)
-  }
+  // const random = (min, max) => {
+  //   return Math.floor(Math.random() * (max - min + 1) + min)
+  // }
 
   return (
     <>
@@ -71,7 +69,15 @@ const Dashboard = () => {
       <CRow>
         <CCol xs>
           <CCard className="mb-4">
-            <CCardHeader>User Information</CCardHeader>
+            <CInputGroup className="mb-3">
+              <CFormControl
+                placeholder="Enter Document Name Here..."
+                aria-describedby="button-addon2"
+              />
+              <CButton type="button" color="primary" id="button-addon2">
+                <strong>Download Data</strong>
+              </CButton>
+            </CInputGroup>
             <CCardBody>
               <CTable hover responsive align="middle" className="mb-0 border">
                 <CTableHead color="light">
@@ -80,10 +86,10 @@ const Dashboard = () => {
                       <CIcon name="cil-people" />
                     </CTableHeaderCell>
                     <CTableHeaderCell>Users</CTableHeaderCell>
-                    <CTableHeaderCell className="text-center">Country</CTableHeaderCell>
-                    <CTableHeaderCell>Usage</CTableHeaderCell>
+                    <CTableHeaderCell className="text-center">Accepted</CTableHeaderCell>
+                    <CTableHeaderCell className="text-center">Messaged</CTableHeaderCell>
                     <CTableHeaderCell className="text-center">LinkedIn Link</CTableHeaderCell>
-                    <CTableHeaderCell>Good Lead? (check box)</CTableHeaderCell>
+                    <CTableHeaderCell>Lead Interests</CTableHeaderCell>
                   </CTableRow>
                 </CTableHead>
                 <CTableBody>
@@ -92,32 +98,33 @@ const Dashboard = () => {
                       <CAvatar size="md" src="avatars/1.jpg" status="success" />
                     </CTableDataCell>
                     <CTableDataCell>
-                      <div>Yiorgos Avraamu</div>
+                      <div>
+                        <strong>Yiorgos Avraamu</strong>
+                      </div>
                       <div className="small text-medium-emphasis">
-                        <span>New</span> | Connected: Jan 1, 2021
+                        <span>
+                          <strong>Company:</strong> SOMOS Community Case
+                        </span>
+                        <br />
+                        <span>
+                          <strong>Title: </strong> Director Of Practice Operations
+                        </span>
+                        <br />
+                        <span>
+                          <strong>Connected On:</strong> Jan 1, 2021
+                        </span>
                       </div>
                     </CTableDataCell>
                     <CTableDataCell className="text-center">
-                      <CIcon size="xl" name="cif-us" title="us" id="us" />
-                    </CTableDataCell>
-                    <CTableDataCell>
-                      <div className="clearfix">
-                        <div className="float-start">
-                          <strong>50%</strong>
-                        </div>
-                        <div className="float-end">
-                          <small className="text-medium-emphasis">
-                            Jun 11, 2015 - Jul 10, 2015
-                          </small>
-                        </div>
-                      </div>
-                      <CProgress thin color="success" value={50} />
+                      <CFormCheck id="flexCheckDefault" />
                     </CTableDataCell>
                     <CTableDataCell className="text-center">
-                      <CIcon size="xl" name="cib-cc-mastercard" />
+                      <CFormCheck id="flexCheckDefault" />
+                    </CTableDataCell>
+                    <CTableDataCell className="text-center">
+                      <CIcon size="xl" name="cib-linkedin" />
                     </CTableDataCell>
                     <CTableDataCell>
-                      <CFormLabel htmlFor="customRange1">Lead Interest</CFormLabel>
                       <CFormRange id="customRange1" />
                     </CTableDataCell>
                   </CTableRow>
@@ -126,32 +133,33 @@ const Dashboard = () => {
                       <CAvatar size="md" src="avatars/2.jpg" status="danger" />
                     </CTableDataCell>
                     <CTableDataCell>
-                      <div>Avram Tarasios</div>
+                      <div>
+                        <strong>Avram Tarasios</strong>
+                      </div>
                       <div className="small text-medium-emphasis">
-                        <span>Recurring</span> | Connected: Jan 1, 2021
+                        <span>
+                          <strong>Company:</strong> PWC Insurance
+                        </span>
+                        <br />
+                        <span>
+                          <strong>Title: </strong> Regulatory Affairs Associate
+                        </span>
+                        <br />
+                        <span>
+                          <strong>Connected On:</strong> Jan 1, 2021
+                        </span>
                       </div>
                     </CTableDataCell>
                     <CTableDataCell className="text-center">
-                      <CIcon size="xl" name="cif-br" title="br" id="br" />
-                    </CTableDataCell>
-                    <CTableDataCell>
-                      <div className="clearfix">
-                        <div className="float-start">
-                          <strong>10%</strong>
-                        </div>
-                        <div className="float-end">
-                          <small className="text-medium-emphasis">
-                            Jun 11, 2015 - Jul 10, 2015
-                          </small>
-                        </div>
-                      </div>
-                      <CProgress thin color="info" value={10} />
+                      <CFormCheck id="flexCheckDefault" />
                     </CTableDataCell>
                     <CTableDataCell className="text-center">
-                      <CIcon size="xl" name="cib-cc-visa" />
+                      <CFormCheck id="flexCheckDefault" />
+                    </CTableDataCell>
+                    <CTableDataCell className="text-center">
+                      <CIcon size="xl" name="cib-linkedin" />
                     </CTableDataCell>
                     <CTableDataCell>
-                      <CFormLabel htmlFor="customRange1">Lead Interest</CFormLabel>
                       <CFormRange id="customRange1" />
                     </CTableDataCell>
                   </CTableRow>
@@ -160,32 +168,33 @@ const Dashboard = () => {
                       <CAvatar size="md" src="avatars/3.jpg" status="warning" />
                     </CTableDataCell>
                     <CTableDataCell>
-                      <div>Quintin Ed</div>
+                      <div>
+                        <strong>Quintin Ed</strong>
+                      </div>
                       <div className="small text-medium-emphasis">
-                        <span>New</span> | Connected: Jan 1, 2021
+                        <span>
+                          <strong>Company:</strong> Williamsburg Pediatric Dental
+                        </span>
+                        <br />
+                        <span>
+                          <strong>Title: </strong> Practice Manager
+                        </span>
+                        <br />
+                        <span>
+                          <strong>Connected On:</strong> Jan 1, 2021
+                        </span>
                       </div>
                     </CTableDataCell>
                     <CTableDataCell className="text-center">
-                      <CIcon size="xl" name="cif-in" title="in" id="in" />
-                    </CTableDataCell>
-                    <CTableDataCell>
-                      <div className="clearfix">
-                        <div className="float-start">
-                          <strong>74%</strong>
-                        </div>
-                        <div className="float-end">
-                          <small className="text-medium-emphasis">
-                            Jun 11, 2015 - Jul 10, 2015
-                          </small>
-                        </div>
-                      </div>
-                      <CProgress thin color="warning" value={74} />
+                      <CFormCheck id="flexCheckDefault" />
                     </CTableDataCell>
                     <CTableDataCell className="text-center">
-                      <CIcon size="xl" name="cib-cc-stripe" />
+                      <CFormCheck id="flexCheckDefault" />
+                    </CTableDataCell>
+                    <CTableDataCell className="text-center">
+                      <CIcon size="xl" name="cib-linkedin" />
                     </CTableDataCell>
                     <CTableDataCell>
-                      <CFormLabel htmlFor="customRange1">Lead Interest</CFormLabel>
                       <CFormRange id="customRange1" />
                     </CTableDataCell>
                   </CTableRow>
@@ -194,32 +203,34 @@ const Dashboard = () => {
                       <CAvatar size="md" src="avatars/4.jpg" status="secondary" />
                     </CTableDataCell>
                     <CTableDataCell>
-                      <div>Enéas Kwadwo</div>
+                      <div>
+                        <strong>Enéas Kwadwo</strong>
+                      </div>
                       <div className="small text-medium-emphasis">
-                        <span>New</span> | Connected: Jan 1, 2021
+                        <span>
+                          <strong>Company:</strong> One Medical
+                        </span>
+                        <br />
+                        <span>
+                          <strong>Title: </strong> Office Manager
+                        </span>
+                        <br />
+                        <span>
+                          <strong>Connected On:</strong> Jan 1, 2021
+                        </span>
                       </div>
                     </CTableDataCell>
                     <CTableDataCell className="text-center">
-                      <CIcon size="xl" name="cif-fr" title="fr" id="fr" />
-                    </CTableDataCell>
-                    <CTableDataCell>
-                      <div className="clearfix">
-                        <div className="float-start">
-                          <strong>98%</strong>
-                        </div>
-                        <div className="float-end">
-                          <small className="text-medium-emphasis">
-                            Jun 11, 2015 - Jul 10, 2015
-                          </small>
-                        </div>
-                      </div>
-                      <CProgress thin color="danger" value={98} />
+                      <CFormCheck id="flexCheckDefault" />
                     </CTableDataCell>
                     <CTableDataCell className="text-center">
-                      <CIcon size="xl" name="cib-cc-paypal" />
+                      <CFormCheck id="flexCheckDefault" />
+                    </CTableDataCell>
+                    <CTableDataCell className="text-center">
+                      <CIcon size="xl" name="cib-linkedin" />
                     </CTableDataCell>
                     <CTableDataCell>
-                      <CFormLabel htmlFor="customRange1">Lead Interest</CFormLabel>
+                      {/* <CFormLabel htmlFor="customRange1">Lead Interest</CFormLabel> */}
                       <CFormRange id="customRange1" />
                     </CTableDataCell>
                   </CTableRow>
@@ -228,32 +239,33 @@ const Dashboard = () => {
                       <CAvatar size="md" src="avatars/5.jpg" status="success" />
                     </CTableDataCell>
                     <CTableDataCell>
-                      <div>Agapetus Tadeáš</div>
+                      <div>
+                        <strong>Apapetus Tadeáš</strong>
+                      </div>
                       <div className="small text-medium-emphasis">
-                        <span>New</span> | Connected: Jan 1, 2021
+                        <span>
+                          <strong>Company:</strong> PSEG Long Island
+                        </span>
+                        <br />
+                        <span>
+                          <strong>Title: </strong> Executive Assistant To Chief Medical Officer
+                        </span>
+                        <br />
+                        <span>
+                          <strong>Connected On:</strong> Jan 1, 2021
+                        </span>
                       </div>
                     </CTableDataCell>
                     <CTableDataCell className="text-center">
-                      <CIcon size="xl" name="cif-es" title="es" id="es" />
-                    </CTableDataCell>
-                    <CTableDataCell>
-                      <div className="clearfix">
-                        <div className="float-start">
-                          <strong>22%</strong>
-                        </div>
-                        <div className="float-end">
-                          <small className="text-medium-emphasis">
-                            Jun 11, 2015 - Jul 10, 2015
-                          </small>
-                        </div>
-                      </div>
-                      <CProgress thin color="info" value={22} />
+                      <CFormCheck id="flexCheckDefault" />
                     </CTableDataCell>
                     <CTableDataCell className="text-center">
-                      <CIcon size="xl" name="cib-cc-apple-pay" />
+                      <CFormCheck id="flexCheckDefault" />
+                    </CTableDataCell>
+                    <CTableDataCell className="text-center">
+                      <CIcon size="xl" name="cib-linkedin" />
                     </CTableDataCell>
                     <CTableDataCell>
-                      <CFormLabel htmlFor="customRange1">Lead Interest</CFormLabel>
                       <CFormRange id="customRange1" />
                     </CTableDataCell>
                   </CTableRow>
@@ -262,33 +274,34 @@ const Dashboard = () => {
                       <CAvatar size="md" src="avatars/6.jpg" status="danger" />
                     </CTableDataCell>
                     <CTableDataCell>
-                      <div>Hunter Macias</div>
+                      <div>
+                        <strong>David Maurici</strong>
+                      </div>
                       <div className="small text-medium-emphasis">
-                        <span>New</span> | Connected: Jan 1, 2021
+                        <span>
+                          <strong>Company:</strong> New York State Office of Mental Health
+                        </span>
+                        <br />
+                        <span>
+                          <strong>Title: </strong> Manager, Executive Office and Medical Education
+                        </span>
+                        <br />
+                        <span>
+                          <strong>Connected On:</strong> Jan 1, 2021
+                        </span>
                       </div>
                     </CTableDataCell>
                     <CTableDataCell className="text-center">
-                      <CIcon size="xl" name="cif-pl" title="pl" id="pl" />
-                    </CTableDataCell>
-                    <CTableDataCell>
-                      <div className="clearfix">
-                        <div className="float-start">
-                          <strong>43%</strong>
-                        </div>
-                        <div className="float-end">
-                          <small className="text-medium-emphasis">
-                            Jun 11, 2015 - Jul 10, 2015
-                          </small>
-                        </div>
-                      </div>
-                      <CProgress thin color="success" value={43} />
+                      <CFormCheck id="flexCheckDefault" />
                     </CTableDataCell>
                     <CTableDataCell className="text-center">
-                      <CIcon size="xl" name="cib-cc-amex" />
+                      <CFormCheck id="flexCheckDefault" />
+                    </CTableDataCell>
+                    <CTableDataCell className="text-center">
+                      <CIcon size="xl" name="cib-linkedin" />
                     </CTableDataCell>
                     <CTableDataCell>
-                      {/* <CFormCheck id="flexCheckDefault" label="Followed Up" /> */}
-                      <CFormLabel htmlFor="customRange1">Lead Interest</CFormLabel>
+                      {/* <CFormLabel htmlFor="customRange1">Lead Interest</CFormLabel> */}
                       <CFormRange id="customRange1" />
                     </CTableDataCell>
                   </CTableRow>
