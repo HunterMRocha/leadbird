@@ -7,6 +7,11 @@ import {
   CCardBody,
   CCardFooter,
   CCol,
+  CDataTable,
+  CDropdown,
+  CDropdownItem,
+  CDropdownMenu,
+  CDropdownToggle,
   CFormControl,
   CFormCheck,
   CFormRange,
@@ -23,6 +28,7 @@ import {
 // import { CChartLine } from '@coreui/react-chartjs'
 // import { getStyle, hexToRgba } from '@coreui/utils'
 import CIcon from '@coreui/icons-react'
+import { Link } from 'react-router-dom'
 
 // const WidgetsDropdown = lazy(() => import('../components/widgets/WidgetsDropdown.js'))
 // const WidgetsBrand = lazy(() => import('../components/widgets/WidgetsBrand.js'))
@@ -39,28 +45,28 @@ const Dashboard = () => {
           <CRow className="text-center">
             <CCol md sm="12" className="mb-sm-2 mb-0">
               <div className="text-medium-emphasis">Connection Requests</div>
-              <strong>1500</strong>
-              <CProgress thin className="mt-2" precision={1} color="success" value={40} />
+              <strong>6 Requests</strong>
+              <CProgress thin className="mt-2" precision={1} color="success" value={100} />
             </CCol>
             <CCol md sm="12" className="mb-sm-2 mb-0">
-              <div className="text-medium-emphasis">Connections Made</div>
-              <strong>24.093 Users (20%)</strong>
-              <CProgress thin className="mt-2" precision={1} color="info" value={40} />
+              <div className="text-medium-emphasis">Connections Accepted</div>
+              <strong>4 Accepted</strong>
+              <CProgress thin className="mt-2" precision={1} color="info" value={80} />
             </CCol>
             <CCol md sm="12" className="mb-sm-2 mb-0">
-              <div className="text-medium-emphasis">Connection Success %</div>
-              <strong>78.706 Views (60%)</strong>
-              <CProgress thin className="mt-2" precision={1} color="warning" value={40} />
+              <div className="text-medium-emphasis">Connection Success Percent</div>
+              <strong>66.6%</strong>
+              <CProgress thin className="mt-2" precision={1} color="warning" value={66.6} />
             </CCol>
             <CCol md sm="12" className="mb-sm-2 mb-0">
               <div className="text-medium-emphasis">Messages Sent</div>
-              <strong>22.123 Users (80%)</strong>
-              <CProgress thin className="mt-2" precision={1} color="danger" value={40} />
+              <strong>6 Messaged</strong>
+              <CProgress thin className="mt-2" precision={1} color="danger" value={100} />
             </CCol>
             <CCol md sm="12" className="mb-sm-2 mb-0">
-              <div className="text-medium-emphasis">Message Response Rate</div>
-              <strong>Average Rate (40.15%)</strong>
-              <CProgress thin className="mt-2" precision={1} value={40} />
+              <div className="text-medium-emphasis">Message Response Percent</div>
+              <strong>33.3%</strong>
+              <CProgress thin className="mt-2" precision={1} value={33.3} />
             </CCol>
           </CRow>
         </CCardFooter>
@@ -78,6 +84,16 @@ const Dashboard = () => {
                 <strong>Download Data</strong>
               </CButton>
             </CInputGroup>
+            <CInputGroup className="mb-3">
+              <CFormControl placeholder="Search By Name: " />
+              <CDropdown>
+                <CDropdownToggle color="secondary">Filter By</CDropdownToggle>
+                <CDropdownMenu>
+                  <CDropdownItem href="#">Connections Messaged</CDropdownItem>
+                  <CDropdownItem href="#">Connections Accepted</CDropdownItem>
+                </CDropdownMenu>
+              </CDropdown>
+            </CInputGroup>
             <CCardBody>
               <CTable hover responsive align="middle" className="mb-0 border">
                 <CTableHead color="light">
@@ -86,8 +102,12 @@ const Dashboard = () => {
                       <CIcon name="cil-people" />
                     </CTableHeaderCell>
                     <CTableHeaderCell>Users</CTableHeaderCell>
-                    <CTableHeaderCell className="text-center">Accepted</CTableHeaderCell>
-                    <CTableHeaderCell className="text-center">Messaged</CTableHeaderCell>
+                    <CTableHeaderCell className="text-center">
+                      <span>Connections Accepted</span>
+                    </CTableHeaderCell>
+                    <CTableHeaderCell className="text-center">
+                      <span>Connections Messaged</span>
+                    </CTableHeaderCell>
                     <CTableHeaderCell className="text-center">LinkedIn Link</CTableHeaderCell>
                     <CTableHeaderCell>Lead Interests</CTableHeaderCell>
                   </CTableRow>
@@ -122,7 +142,9 @@ const Dashboard = () => {
                       <CFormCheck id="flexCheckDefault" />
                     </CTableDataCell>
                     <CTableDataCell className="text-center">
-                      <CIcon size="xl" name="cib-linkedin" />
+                      <a href="https://www.linkedin.com/in/huntermacias/">
+                        <CIcon size="xl" name="cib-linkedin" />
+                      </a>
                     </CTableDataCell>
                     <CTableDataCell>
                       <CFormRange id="customRange1" />
@@ -157,7 +179,9 @@ const Dashboard = () => {
                       <CFormCheck id="flexCheckDefault" />
                     </CTableDataCell>
                     <CTableDataCell className="text-center">
-                      <CIcon size="xl" name="cib-linkedin" />
+                      <a href="https://www.linkedin.com/in/huntermacias/">
+                        <CIcon size="xl" name="cib-linkedin" />
+                      </a>
                     </CTableDataCell>
                     <CTableDataCell>
                       <CFormRange id="customRange1" />
@@ -192,7 +216,9 @@ const Dashboard = () => {
                       <CFormCheck id="flexCheckDefault" />
                     </CTableDataCell>
                     <CTableDataCell className="text-center">
-                      <CIcon size="xl" name="cib-linkedin" />
+                      <a href="https://www.linkedin.com/in/huntermacias/">
+                        <CIcon size="xl" name="cib-linkedin" />
+                      </a>
                     </CTableDataCell>
                     <CTableDataCell>
                       <CFormRange id="customRange1" />
@@ -227,10 +253,11 @@ const Dashboard = () => {
                       <CFormCheck id="flexCheckDefault" />
                     </CTableDataCell>
                     <CTableDataCell className="text-center">
-                      <CIcon size="xl" name="cib-linkedin" />
+                      <a href="https://www.linkedin.com/in/huntermacias/">
+                        <CIcon size="xl" name="cib-linkedin" />
+                      </a>
                     </CTableDataCell>
                     <CTableDataCell>
-                      {/* <CFormLabel htmlFor="customRange1">Lead Interest</CFormLabel> */}
                       <CFormRange id="customRange1" />
                     </CTableDataCell>
                   </CTableRow>
@@ -263,7 +290,9 @@ const Dashboard = () => {
                       <CFormCheck id="flexCheckDefault" />
                     </CTableDataCell>
                     <CTableDataCell className="text-center">
-                      <CIcon size="xl" name="cib-linkedin" />
+                      <a href="https://www.linkedin.com/in/huntermacias/">
+                        <CIcon size="xl" name="cib-linkedin" />
+                      </a>
                     </CTableDataCell>
                     <CTableDataCell>
                       <CFormRange id="customRange1" />
@@ -298,10 +327,11 @@ const Dashboard = () => {
                       <CFormCheck id="flexCheckDefault" />
                     </CTableDataCell>
                     <CTableDataCell className="text-center">
-                      <CIcon size="xl" name="cib-linkedin" />
+                      <a href="https://www.linkedin.com/in/huntermacias/">
+                        <CIcon size="xl" name="cib-linkedin" />
+                      </a>
                     </CTableDataCell>
                     <CTableDataCell>
-                      {/* <CFormLabel htmlFor="customRange1">Lead Interest</CFormLabel> */}
                       <CFormRange id="customRange1" />
                     </CTableDataCell>
                   </CTableRow>
