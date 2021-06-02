@@ -1,24 +1,18 @@
 {
   "name": "@coreui/coreui-free-react-admin-template",
-  "description": "CoreUI Free React Admin Template",
+  "description": "LeadBird Dashboard",
   "version": "4.0.0-alpha.0",
   "config": {
     "coreui_library_short_version": "4.0"
   },
   "author": {
-    "name": "CoreUI",
+    "name": "Hunter Macias",
     "url": "https://coreui.io",
     "github": "https://github.com/coreui",
     "twitter": "https://twitter.com/core_ui"
   },
-  "contributors": [
-    {
-      "name": "CoreUI Team",
-      "url": "https://github.com/orgs/coreui/people"
-    }
-  ],
   "homepage": ".",
-  "copyright": "Copyright 2017-2021 creativeLabs Łukasz Holeczek",
+  "copyright": "Copyright 2021 Hunter Macias",
   "license": "MIT",
   "private": true,
   "repository": {
