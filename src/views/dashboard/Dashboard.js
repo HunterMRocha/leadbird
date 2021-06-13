@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import {
   CAvatar,
@@ -7,14 +7,9 @@ import {
   CCardBody,
   CCardFooter,
   CCol,
-  CDataTable,
-  CDropdown,
-  CDropdownItem,
-  CDropdownMenu,
-  CDropdownToggle,
+  CForm,
   CFormControl,
   CFormCheck,
-  CFormRange,
   CInputGroup,
   CProgress,
   CRow,
@@ -28,48 +23,80 @@ import {
 import CIcon from '@coreui/icons-react'
 
 
+
 const Dashboard = () => {
+
+  const [data, setData] = useState([]);
+
+  //GET Request function to API
+  const hitAPI = () => {
+    fetch("https://api.apispreadsheets.com/data/13898/")
+      .then( res => {
+        res.json().then(data => {
+          setData(data.data);
+        })    
+    })
+  }
+
+  //Calling the function on component mount
+  useEffect(() => {
+    hitAPI();
+  }, []);
+
+
 
   return (
     <>
-      <CCard className="mb-4">
+      <CCard className="mb-5">
         <CCardFooter>
           <CRow className="text-center">
             <CCol md sm="12" className="mb-sm-2 mb-0">
-              <div className="text-medium-emphasis">Connection Requests</div>
-              <strong>6 Requests</strong>
-              <CProgress thin className="mt-2" precision={1} color="success" value={100} />
+              <CButton color="dark" variant="outline" size="lg">
+                <div className="text-large-emphasis">Total Connection Requests</div>
+                <strong>6 Requests</strong>
+                <CProgress thin className="mt-3" precision={1} color="success" value={100} />
+              </CButton>
             </CCol>
             <CCol md sm="12" className="mb-sm-2 mb-0">
-              <div className="text-medium-emphasis">Connections Accepted</div>
-              <strong>4 Accepted</strong>
-              <CProgress thin className="mt-2" precision={1} color="info" value={80} />
+              <CButton color="dark" variant="outline" size="lg">
+                <div className="text-medium-emphasis">Total Connections Accepted</div>
+                <strong>4 Accepted</strong>
+                <CProgress thin className="mt-2" precision={1} color="info" value={80} />
+              </CButton>
             </CCol>
             <CCol md sm="12" className="mb-sm-2 mb-0">
-              <div className="text-medium-emphasis">Connection Success Percent</div>
-              <strong>66.6%</strong>
-              <CProgress thin className="mt-2" precision={1} color="warning" value={66.6} />
+              <CButton color="dark" variant="outline" size="lg">
+                <div className="text-medium-emphasis">Connection Success Percent</div>
+                <strong>66.6%</strong>
+                <CProgress thin className="mt-2" precision={1} color="warning" value={66.6} />
+              </CButton>
             </CCol>
             <CCol md sm="12" className="mb-sm-2 mb-0">
-              <div className="text-medium-emphasis">Messages Sent</div>
-              <strong>6 Messaged</strong>
-              <CProgress thin className="mt-2" precision={1} color="danger" value={100} />
+              <CButton color="dark" variant="outline" size="lg">
+                <div className="text-medium-emphasis">Total Messages Returned</div>
+                <strong>2 Messaged</strong>
+                <CProgress thin className="mt-2" precision={1} color="danger" value={33.3} />
+              </CButton>
             </CCol>
             <CCol md sm="12" className="mb-sm-2 mb-0">
-              <div className="text-medium-emphasis">Message Response Percent</div>
-              <strong>33.3%</strong>
-              <CProgress thin className="mt-2" precision={1} value={33.3} />
+              <CButton color="dark" variant="outline" size="lg">
+                <div className="text-medium-emphasis">Message Response Percent</div>
+                <strong>33.3%</strong>
+                <CProgress thin className="mt-2" precision={1} value={33.3} />
+              </CButton>
             </CCol>
           </CRow>
         </CCardFooter>
       </CCard>
 
+
+    {/* <h2>-----USER ANALYTICS-----</h2> */}
       <CRow>
         <CCol xs>
           <CCard className="mb-4">
             <CInputGroup className="mb-3">
               <CFormControl
-                placeholder="Enter Document Name Here..."
+                placeholder="Enter Document Title Here..."
                 aria-describedby="button-addon2"
               />
               <CButton type="button" color="primary" id="button-addon2">
@@ -78,255 +105,76 @@ const Dashboard = () => {
             </CInputGroup>
             <CInputGroup className="mb-3">
               <CFormControl placeholder="Search By Name: " />
-              <CDropdown>
-                <CDropdownToggle color="secondary">Filter By</CDropdownToggle>
-                <CDropdownMenu>
-                  <CDropdownItem href="#">Connections Messaged</CDropdownItem>
-                  <CDropdownItem href="#">Connections Accepted</CDropdownItem>
-                </CDropdownMenu>
-              </CDropdown>
             </CInputGroup>
             <CCardBody>
               <CTable hover responsive align="middle" className="mb-0 border">
                 <CTableHead color="light">
                   <CTableRow>
-                    <CTableHeaderCell className="text-center">
-                      <CIcon name="cil-people" />
-                    </CTableHeaderCell>
-                    <CTableHeaderCell>Users</CTableHeaderCell>
-                    <CTableHeaderCell className="text-center">
-                      <span>Connections Accepted</span>
-                    </CTableHeaderCell>
+                    <CTableHeaderCell>
+                      <div>
+                        <span>User Information    </span>
+                        <CIcon name='cil-people'></CIcon>
+                      </div>                      
+                      </CTableHeaderCell>
                     <CTableHeaderCell className="text-center">
                       <span>Connections Messaged</span>
                     </CTableHeaderCell>
                     <CTableHeaderCell className="text-center">LinkedIn Link</CTableHeaderCell>
-                    <CTableHeaderCell>Lead Interests</CTableHeaderCell>
+                    <CTableHeaderCell>Lead Last Message</CTableHeaderCell>
                   </CTableRow>
                 </CTableHead>
+
+
                 <CTableBody>
-                  <CTableRow>
-                    <CTableDataCell className="text-center">
-                      <CAvatar size="md" src="avatars/1.jpg" status="success" />
-                    </CTableDataCell>
-                    <CTableDataCell>
-                      <div>
-                        <strong>Yiorgos Avraamu</strong>
-                      </div>
-                      <div className="small text-medium-emphasis">
-                        <span>
-                          <strong>Company:</strong> SOMOS Community Case
-                        </span>
-                        <br />
-                        <span>
-                          <strong>Title: </strong> Director Of Practice Operations
-                        </span>
-                        <br />
-                        <span>
-                          <strong>Connected On:</strong> Jan 1, 2021
-                        </span>
-                      </div>
-                    </CTableDataCell>
-                    <CTableDataCell className="text-center">
-                      <CFormCheck id="flexCheckDefault" />
-                    </CTableDataCell>
-                    <CTableDataCell className="text-center">
-                      <CFormCheck id="flexCheckDefault" />
-                    </CTableDataCell>
-                    <CTableDataCell className="text-center">
-                      <a href="https://www.linkedin.com/in/huntermacias/">
-                        <CIcon size="xl" name="cib-linkedin" />
-                      </a>
-                    </CTableDataCell>
-                    <CTableDataCell>
-                      <CFormRange id="customRange1" />
-                    </CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableDataCell className="text-center">
-                      <CAvatar size="md" src="avatars/2.jpg" status="danger" />
-                    </CTableDataCell>
-                    <CTableDataCell>
-                      <div>
-                        <strong>Avram Tarasios</strong>
-                      </div>
-                      <div className="small text-medium-emphasis">
-                        <span>
-                          <strong>Company:</strong> PWC Insurance
-                        </span>
-                        <br />
-                        <span>
-                          <strong>Title: </strong> Regulatory Affairs Associate
-                        </span>
-                        <br />
-                        <span>
-                          <strong>Connected On:</strong> Jan 1, 2021
-                        </span>
-                      </div>
-                    </CTableDataCell>
-                    <CTableDataCell className="text-center">
-                      <CFormCheck id="flexCheckDefault" />
-                    </CTableDataCell>
-                    <CTableDataCell className="text-center">
-                      <CFormCheck id="flexCheckDefault" />
-                    </CTableDataCell>
-                    <CTableDataCell className="text-center">
-                      <a href="https://www.linkedin.com/in/huntermacias/">
-                        <CIcon size="xl" name="cib-linkedin" />
-                      </a>
-                    </CTableDataCell>
-                    <CTableDataCell>
-                      <CFormRange id="customRange1" />
-                    </CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableDataCell className="text-center">
-                      <CAvatar size="md" src="avatars/3.jpg" status="warning" />
-                    </CTableDataCell>
-                    <CTableDataCell>
-                      <div>
-                        <strong>Quintin Ed</strong>
-                      </div>
-                      <div className="small text-medium-emphasis">
-                        <span>
-                          <strong>Company:</strong> Williamsburg Pediatric Dental
-                        </span>
-                        <br />
-                        <span>
-                          <strong>Title: </strong> Practice Manager
-                        </span>
-                        <br />
-                        <span>
-                          <strong>Connected On:</strong> Jan 1, 2021
-                        </span>
-                      </div>
-                    </CTableDataCell>
-                    <CTableDataCell className="text-center">
-                      <CFormCheck id="flexCheckDefault" />
-                    </CTableDataCell>
-                    <CTableDataCell className="text-center">
-                      <CFormCheck id="flexCheckDefault" />
-                    </CTableDataCell>
-                    <CTableDataCell className="text-center">
-                      <a href="https://www.linkedin.com/in/huntermacias/">
-                        <CIcon size="xl" name="cib-linkedin" />
-                      </a>
-                    </CTableDataCell>
-                    <CTableDataCell>
-                      <CFormRange id="customRange1" />
-                    </CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableDataCell className="text-center">
-                      <CAvatar size="md" src="avatars/4.jpg" status="secondary" />
-                    </CTableDataCell>
-                    <CTableDataCell>
-                      <div>
-                        <strong>Enéas Kwadwo</strong>
-                      </div>
-                      <div className="small text-medium-emphasis">
-                        <span>
-                          <strong>Company:</strong> One Medical
-                        </span>
-                        <br />
-                        <span>
-                          <strong>Title: </strong> Office Manager
-                        </span>
-                        <br />
-                        <span>
-                          <strong>Connected On:</strong> Jan 1, 2021
-                        </span>
-                      </div>
-                    </CTableDataCell>
-                    <CTableDataCell className="text-center">
-                      <CFormCheck id="flexCheckDefault" />
-                    </CTableDataCell>
-                    <CTableDataCell className="text-center">
-                      <CFormCheck id="flexCheckDefault" />
-                    </CTableDataCell>
-                    <CTableDataCell className="text-center">
-                      <a href="https://www.linkedin.com/in/huntermacias/">
-                        <CIcon size="xl" name="cib-linkedin" />
-                      </a>
-                    </CTableDataCell>
-                    <CTableDataCell>
-                      <CFormRange id="customRange1" />
-                    </CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableDataCell className="text-center">
-                      <CAvatar size="md" src="avatars/5.jpg" status="success" />
-                    </CTableDataCell>
-                    <CTableDataCell>
-                      <div>
-                        <strong>Apapetus Tadeáš</strong>
-                      </div>
-                      <div className="small text-medium-emphasis">
-                        <span>
-                          <strong>Company:</strong> PSEG Long Island
-                        </span>
-                        <br />
-                        <span>
-                          <strong>Title: </strong> Executive Assistant To Chief Medical Officer
-                        </span>
-                        <br />
-                        <span>
-                          <strong>Connected On:</strong> Jan 1, 2021
-                        </span>
-                      </div>
-                    </CTableDataCell>
-                    <CTableDataCell className="text-center">
-                      <CFormCheck id="flexCheckDefault" />
-                    </CTableDataCell>
-                    <CTableDataCell className="text-center">
-                      <CFormCheck id="flexCheckDefault" />
-                    </CTableDataCell>
-                    <CTableDataCell className="text-center">
-                      <a href="https://www.linkedin.com/in/huntermacias/">
-                        <CIcon size="xl" name="cib-linkedin" />
-                      </a>
-                    </CTableDataCell>
-                    <CTableDataCell>
-                      <CFormRange id="customRange1" />
-                    </CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableDataCell className="text-center">
-                      <CAvatar size="md" src="avatars/6.jpg" status="danger" />
-                    </CTableDataCell>
-                    <CTableDataCell>
-                      <div>
-                        <strong>David Maurici</strong>
-                      </div>
-                      <div className="small text-medium-emphasis">
-                        <span>
-                          <strong>Company:</strong> New York State Office of Mental Health
-                        </span>
-                        <br />
-                        <span>
-                          <strong>Title: </strong> Manager, Executive Office and Medical Education
-                        </span>
-                        <br />
-                        <span>
-                          <strong>Connected On:</strong> Jan 1, 2021
-                        </span>
-                      </div>
-                    </CTableDataCell>
-                    <CTableDataCell className="text-center">
-                      <CFormCheck id="flexCheckDefault" />
-                    </CTableDataCell>
-                    <CTableDataCell className="text-center">
-                      <CFormCheck id="flexCheckDefault" />
-                    </CTableDataCell>
-                    <CTableDataCell className="text-center">
-                      <a href="https://www.linkedin.com/in/huntermacias/">
-                        <CIcon size="xl" name="cib-linkedin" />
-                      </a>
-                    </CTableDataCell>
-                    <CTableDataCell>
-                      <CFormRange id="customRange1" />
-                    </CTableDataCell>
-                  </CTableRow>
+                  {
+                    Object.values(data).map((item) => (
+                      <CTableRow>
+                        <CTableDataCell>
+                          <div>
+                            <strong>{item.FirstName} {item.LastName}</strong>
+                          </div>
+                          <div className="large text-large-emphasis">
+                            <span>
+                              <strong>Company:</strong> {item.CompanyName}
+                            </span>
+                            <br />
+                            <span>
+                              <strong>Title:</strong> {item.LeadTitle}
+                            </span>
+                            <br />
+                            <span>
+                              <strong>Connected On:</strong> {item.ConnectionDate}
+                            </span>
+                          </div>
+                        </CTableDataCell>
+                        <CTableDataCell className="text-center">
+                          <CFormCheck id="flexCheckDefault" />
+                        </CTableDataCell>
+
+                        <CTableDataCell className='text-center'> 
+                          <a href={item.ProfileLink}>
+                            <CIcon size="xl" name="cib-linkedin" />
+                          </a>
+                        </CTableDataCell>
+
+                        <CTableDataCell>
+                          <CForm>
+                            <div className='mb-3'>
+                              <CFormControl
+                                component="textarea"
+                                id="exampleFormControlTextarea1"
+                                rows="3"
+                                placeholder="No Message Available"
+                              >{item.MessageResponse}</CFormControl>
+
+                            </div>
+                          </CForm>
+                        </CTableDataCell>
+
+
+                      </CTableRow>
+                    ))
+                  }
                 </CTableBody>
               </CTable>
             </CCardBody>

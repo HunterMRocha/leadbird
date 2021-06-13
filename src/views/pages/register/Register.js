@@ -13,6 +13,14 @@ import {
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 
+const user = {
+  username: "",
+  password: "",
+  email: ""
+}
+
+
+
 const Register = () => {
   return (
     <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
@@ -28,7 +36,11 @@ const Register = () => {
                     <CInputGroupText>
                       <CIcon name="cil-user" />
                     </CInputGroupText>
-                    <CFormControl placeholder="Username" autoComplete="username" />
+                    <CFormControl 
+                      placeholder="Username" 
+                      autoComplete="username" 
+                      onChange = {(event,newValue) => user({username:newValue})}
+                      />
                   </CInputGroup>
                   <CInputGroup className="mb-3">
                     <CInputGroupText>@</CInputGroupText>

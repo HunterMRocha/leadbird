@@ -12,9 +12,34 @@ const loading = (
 const DefaultLayout = React.lazy(() => import('./layout/DefaultLayout'))
 
 // Pages
-const Register = React.lazy(() => import('./views/pages/register/Register'))
+// const Register = React.lazy(() => import('./views/pages/register/Register'))
 
 class App extends Component {
+
+  state = {
+    username: "",
+    email: "",
+    password: ""
+  }
+
+  updateUserUsername=e=>{
+    this.setState({
+      username : e.target.value
+    })
+  }
+
+  updateUserEmail=e=>{
+    this.setState({
+      email : e.target.value
+    })
+  }
+
+  updateUserPassword=e=>{
+    this.setState({
+      password : e.target.value
+    })
+  }
+
   render() {
     return (
       <HashRouter>
