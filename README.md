@@ -57,7 +57,6 @@ Orion-React#V1.0.0
 │   ├── views/       #views source
 │   ├── App.js
 │   ├── App.test.js
-│   ├── polyfill.js
 │   ├── index.js
 │   ├── routes.js    #routes config
 │   └── store.js     #template state example 
