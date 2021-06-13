@@ -16,39 +16,12 @@ const DefaultLayout = React.lazy(() => import('./layout/DefaultLayout'))
 
 class App extends Component {
 
-  state = {
-    username: "",
-    email: "",
-    password: ""
-  }
-
-  updateUserUsername=e=>{
-    this.setState({
-      username : e.target.value
-    })
-  }
-
-  updateUserEmail=e=>{
-    this.setState({
-      email : e.target.value
-    })
-  }
-
-  updateUserPassword=e=>{
-    this.setState({
-      password : e.target.value
-    })
-  }
 
   render() {
     return (
       <HashRouter>
         <React.Suspense fallback={loading}>
-          <Switch>
-            <Route path="./views/pages/register/Register" name="Register" render={(props) => <DefaultLayout {...props} />} />
-            <Route path="" name="Home" render={(props) => <DefaultLayout {...props} />} />
-            {/* <Route path="./views/dashboard/Dashboard" name="Dashboard" render={(props) => <DefaultLayout {...props} />} /> */}
-          </Switch>
+          <Route path="" name="Home" render={(props) => <DefaultLayout {...props} />} />
         </React.Suspense>
       </HashRouter>
     )
