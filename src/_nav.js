@@ -29,7 +29,7 @@ const _nav = [
     as: NavLink,
     anchor: 'Dashboard',
     to: '/dashboard',
-    icon: <CIcon name="cil-speedometer" customClasses="nav-icon" />,
+    // icon: <CIcon name="cil-speedometer" customClasses="nav-icon" />,
     badge: {
       color: 'info',
       text: 'NEW',
