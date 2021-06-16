@@ -131,11 +131,11 @@ const Dashboard = () => {
                       <CTableRow>
                         <CTableDataCell>
                           <div>
-                            <strong>{item.FirstName} {item.LastName}</strong>
+                            <strong>Name:</strong>  {item.FirstName} {item.LastName}
                           </div>
                           <div className="large text-large-emphasis">
                             <span>
-                              <strong>Company:</strong> {item.CompanyName}
+                              <strong>Company:</strong> {item.Company}
                             </span>
                             <br />
                             <span>
@@ -148,7 +148,7 @@ const Dashboard = () => {
                           </div>
                         </CTableDataCell>
                         <CTableDataCell className="text-center">
-                          <CFormCheck id="flexCheckDefault" />
+                          <strong>{item.Connected}</strong>
                         </CTableDataCell>
 
                         <CTableDataCell className='text-center'> 
