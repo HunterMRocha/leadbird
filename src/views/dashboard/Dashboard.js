@@ -111,13 +111,13 @@ const Dashboard = () => {
                 <CTableHead color="light">
                   <CTableRow>
                     <CTableHeaderCell>
-                      <div>
-                        <span>User Information    </span>
                         <CIcon name='cil-people'></CIcon>
-                      </div>                      
+                    </CTableHeaderCell>
+                    <CTableHeaderCell>
+                        <span>User Information    </span>
                       </CTableHeaderCell>
                     <CTableHeaderCell className="text-center">
-                      <span>Connections Messaged</span>
+                      <span>Connected</span>
                     </CTableHeaderCell>
                     <CTableHeaderCell className="text-center">LinkedIn Link</CTableHeaderCell>
                     <CTableHeaderCell>Lead Last Message</CTableHeaderCell>
@@ -129,13 +129,14 @@ const Dashboard = () => {
                   {
                     Object.values(data).map((item) => (
                       <CTableRow>
+                        <CAvatar class="col-lg-5 col-md-5 col-sm-5 col-xs-5" size = "lg" src={item.Picture} />
                         <CTableDataCell>
                           <div>
                             <strong>Name:</strong>  {item.FirstName} {item.LastName}
                           </div>
                           <div className="large text-large-emphasis">
                             <span>
-                              <strong>Company:</strong> {item.Company}
+                              <strong>Company:</strong> {item.CompanyName}
                             </span>
                             <br />
                             <span>
