@@ -30,9 +30,9 @@ const Dashboard = () => {
   const { client, account, campaign } = queryString.parse(search);
 
   // console.log("query: ", search);
-  console.log("client: ", client);
-  console.log("account #: ", account);
-  console.log("campaign: ", campaign);
+  // console.log("client: ", client);
+  // console.log("account #: ", account);
+  // console.log("campaign: ", campaign);
 
   const [data, setData] = useState([]);
 
@@ -103,9 +103,10 @@ const Dashboard = () => {
           <CCard className="mb-4">
             <CInputGroup className="mb-3">
               <CFormControl
-                placeholder="Enter Document Title Here..."
+                placeholder="Missing Campaign Title..."
                 aria-describedby="button-addon2"
                 value={campaign}
+                size="lg"
               />
               <CButton type="button" color="primary" id="button-addon2">
                 <strong>Download Data</strong>

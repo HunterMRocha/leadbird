@@ -5,7 +5,7 @@ const _nav = [
     _component: 'CNavItem',
     as: NavLink,
     anchor: 'Dashboard',
-    to: '/dashboard',
+    to: `/`
   },
 ]
 
