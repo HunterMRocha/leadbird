@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
-
+import { useLocation } from 'react-router-dom'
+import queryString from 'query-string'
+import CIcon from '@coreui/icons-react'
 import {
   CAvatar,
   CButton,
@@ -9,7 +11,6 @@ import {
   CCol,
   CForm,
   CFormControl,
-  CFormCheck,
   CInputGroup,
   CProgress,
   CRow,
@@ -20,17 +21,23 @@ import {
   CTableHeaderCell,
   CTableRow,
 } from '@coreui/react'
-import CIcon from '@coreui/icons-react'
 
 
 
 const Dashboard = () => {
 
+  const { search } = useLocation();
+  const { client, account } = queryString.parse(search);
+
+  console.log("query: ", search);
+  console.log("client: ", client);
+  console.log("account #: ", account);
+
   const [data, setData] = useState([]);
 
   //GET Request function to API
   const hitAPI = () => {
-    fetch("https://api.apispreadsheets.com/data/13898/")
+    fetch(`https://api.apispreadsheets.com/data/${account}/`)
       .then( res => {
         res.json().then(data => {
           setData(data.data);
@@ -114,7 +121,7 @@ const Dashboard = () => {
                         <CIcon name='cil-people'></CIcon>
                     </CTableHeaderCell>
                     <CTableHeaderCell>
-                        <span>User Information    </span>
+                        <span>User Information</span>
                       </CTableHeaderCell>
                     <CTableHeaderCell className="text-center">
                       <span>Connected</span>
@@ -157,22 +164,18 @@ const Dashboard = () => {
                             <CIcon size="xl" name="cib-linkedin" />
                           </a>
                         </CTableDataCell>
-
                         <CTableDataCell>
                           <CForm>
-                            <div className='mb-3'>
+                            <div>
                               <CFormControl
                                 component="textarea"
                                 id="exampleFormControlTextarea1"
-                                rows="3"
+                                rows="4"
                                 placeholder="No Message Available"
                               >{item.MessageResponse}</CFormControl>
-
                             </div>
                           </CForm>
                         </CTableDataCell>
-
-
                       </CTableRow>
                     ))
                   }
