@@ -13,8 +13,6 @@ import {
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 
-import { AppBreadcrumb } from './index'
-
 
 const AppHeader = () => {
   const dispatch = useDispatch()
@@ -34,16 +32,13 @@ const AppHeader = () => {
         </CHeaderBrand>
         <CHeaderNav className="d-none d-md-flex me-auto">
           <CNavItem>
-            <CNavLink to="/dashboard" component={NavLink} activeClassName="active">
-              LeadBird Analytics Dashboard
+            <CNavLink to="/dashboard" component={NavLink} activeClassName="active" font-size="30">
+              <strong>LeadBird Analytics Dashboard</strong>
             </CNavLink>
           </CNavItem>
         </CHeaderNav>
       </CContainer>
       <CHeaderDivider />
-      <CContainer fluid>
-        <AppBreadcrumb />
-      </CContainer>
     </CHeader>
   )
 }

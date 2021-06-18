@@ -1,5 +1,3 @@
-import React from 'react'
-import CIcon from '@coreui/icons-react'
 import { NavLink } from 'react-router-dom'
 
 const _nav = [
@@ -8,10 +6,6 @@ const _nav = [
     as: NavLink,
     anchor: 'Dashboard',
     to: '/dashboard',
-    badge: {
-      color: 'info',
-      text: 'NEW',
-    },
   },
 ]
 

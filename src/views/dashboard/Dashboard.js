@@ -27,11 +27,12 @@ import {
 const Dashboard = () => {
 
   const { search } = useLocation();
-  const { client, account } = queryString.parse(search);
+  const { client, account, campaign } = queryString.parse(search);
 
-  console.log("query: ", search);
+  // console.log("query: ", search);
   console.log("client: ", client);
   console.log("account #: ", account);
+  console.log("campaign: ", campaign);
 
   const [data, setData] = useState([]);
 
@@ -49,7 +50,6 @@ const Dashboard = () => {
   useEffect(() => {
     hitAPI();
   }, []);
-
 
 
   return (
@@ -97,7 +97,7 @@ const Dashboard = () => {
       </CCard>
 
 
-    {/* <h2>-----USER ANALYTICS-----</h2> */}
+    {/* User Info */}
       <CRow>
         <CCol xs>
           <CCard className="mb-4">
@@ -105,6 +105,7 @@ const Dashboard = () => {
               <CFormControl
                 placeholder="Enter Document Title Here..."
                 aria-describedby="button-addon2"
+                value={campaign}
               />
               <CButton type="button" color="primary" id="button-addon2">
                 <strong>Download Data</strong>
