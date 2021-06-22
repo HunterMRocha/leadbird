@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import queryString from 'query-string'
 import CIcon from '@coreui/icons-react'
+import { MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact';
 import {
   CAvatar,
   CButton,
@@ -14,33 +15,42 @@ import {
   CInputGroup,
   CProgress,
   CRow,
-  CTable,
-  CTableBody,
   CTableDataCell,
-  CTableHead,
   CTableHeaderCell,
   CTableRow,
 } from '@coreui/react'
+
+require("es6-promise").polyfill();
+require("isomorphic-fetch");
 
 
 
 const Dashboard = () => {
 
+
   const { search } = useLocation();
   const { client, account, campaign } = queryString.parse(search);
 
-  // console.log("query: ", search);
-  // console.log("client: ", client);
-  // console.log("account #: ", account);
-  // console.log("campaign: ", campaign);
-
   const [data, setData] = useState([]);
+  const [q, setQ] = useState("");
+  const [totalMessaged, setMess] = useState();
+  const [totalRequests, setTR] = useState();
+  const [totalAccepted, setTA] = useState();
+  const [successPerc, setSP] = useState();
+  const [responseRate, setRR] = useState();
+
+
 
   //GET Request function to API
   const hitAPI = () => {
     fetch(`https://api.apispreadsheets.com/data/${account}/`)
       .then( res => {
         res.json().then(data => {
+          setMess(data.data[0].TotalMessaged);
+          setTR(data.data[0].TotalRequests);
+          setTA(data.data[0].TotalConnections);
+          setSP(((data.data[0].TotalConnections / data.data[0].TotalRequests) * 100.0).toFixed(2))
+          setRR(((data.data[0].TotalMessaged / data.data[0].TotalConnections) * 100).toFixed(2))
           setData(data.data);
         })    
     })
@@ -51,6 +61,10 @@ const Dashboard = () => {
     hitAPI();
   }, []);
 
+  function searchTable(rows){
+    return rows.filter(row => row.FirstName.toLowerCase().indexOf(q) > -1)
+  }
+
 
   return (
     <>
@@ -60,36 +74,36 @@ const Dashboard = () => {
             <CCol md sm="12" className="mb-sm-2 mb-0">
               <CButton color="dark" variant="outline" size="lg">
                 <div className="text-large-emphasis">Total Connection Requests</div>
-                <strong>6 Requests</strong>
+                <strong>{totalRequests} Requests</strong>
                 <CProgress thin className="mt-3" precision={1} color="success" value={100} />
               </CButton>
             </CCol>
             <CCol md sm="12" className="mb-sm-2 mb-0">
               <CButton color="dark" variant="outline" size="lg">
                 <div className="text-medium-emphasis">Total Connections Accepted</div>
-                <strong>4 Accepted</strong>
-                <CProgress thin className="mt-2" precision={1} color="info" value={80} />
+                <strong>{totalAccepted} Accepted</strong>
+                <CProgress thin className="mt-2" precision={1} color="info" value={successPerc} />
               </CButton>
             </CCol>
             <CCol md sm="12" className="mb-sm-2 mb-0">
               <CButton color="dark" variant="outline" size="lg">
                 <div className="text-medium-emphasis">Connection Success Percent</div>
-                <strong>66.6%</strong>
-                <CProgress thin className="mt-2" precision={1} color="warning" value={66.6} />
+                <strong>{successPerc}%</strong>
+                <CProgress thin className="mt-2" precision={1} color="warning" value={successPerc} />
               </CButton>
             </CCol>
             <CCol md sm="12" className="mb-sm-2 mb-0">
               <CButton color="dark" variant="outline" size="lg">
                 <div className="text-medium-emphasis">Total Messages Returned</div>
-                <strong>2 Messaged</strong>
-                <CProgress thin className="mt-2" precision={1} color="danger" value={33.3} />
+                <strong>{totalMessaged} Messaged</strong>
+                <CProgress thin className="mt-2" precision={1} color="danger" value={totalMessaged} />
               </CButton>
             </CCol>
             <CCol md sm="12" className="mb-sm-2 mb-0">
               <CButton color="dark" variant="outline" size="lg">
                 <div className="text-medium-emphasis">Message Response Percent</div>
-                <strong>33.3%</strong>
-                <CProgress thin className="mt-2" precision={1} value={33.3} />
+                <strong>{responseRate}%</strong>
+                <CProgress thin className="mt-2" precision={1} value={responseRate} />
               </CButton>
             </CCol>
           </CRow>
@@ -98,26 +112,26 @@ const Dashboard = () => {
 
 
     {/* User Info */}
+      <CInputGroup className="mb-3">
+        <CFormControl
+          placeholder="Missing Campaign Title..."
+          value={"campaign title: " + campaign}
+          size="lg"
+        />
+        <CButton type="button" color="primary" id="button-addon2">
+          <strong>Download Data</strong>
+        </CButton>
+      </CInputGroup>
+      
       <CRow>
         <CCol xs>
           <CCard className="mb-4">
             <CInputGroup className="mb-3">
-              <CFormControl
-                placeholder="Missing Campaign Title..."
-                aria-describedby="button-addon2"
-                value={campaign}
-                size="lg"
-              />
-              <CButton type="button" color="primary" id="button-addon2">
-                <strong>Download Data</strong>
-              </CButton>
-            </CInputGroup>
-            <CInputGroup className="mb-3">
-              <CFormControl placeholder="Search By Name: " />
+              <CFormControl type="text" placeholder="Search By First Name: " value={q} onChange={(e) => setQ(e.target.value)} />
             </CInputGroup>
             <CCardBody>
-              <CTable hover responsive align="middle" className="mb-0 border">
-                <CTableHead color="light">
+              <MDBTable scrollY maxHeight="500px" hover responsive align="middle" className="mb-0 border">
+                <MDBTableHead color="light">
                   <CTableRow>
                     <CTableHeaderCell>
                         <CIcon name='cil-people'></CIcon>
@@ -131,14 +145,15 @@ const Dashboard = () => {
                     <CTableHeaderCell className="text-center">LinkedIn Link</CTableHeaderCell>
                     <CTableHeaderCell>Lead Last Message</CTableHeaderCell>
                   </CTableRow>
-                </CTableHead>
+                </MDBTableHead>
 
 
-                <CTableBody>
+                <MDBTableBody background="yellow">
                   {
-                    Object.values(data).map((item) => (
+                    Object.values(searchTable(data)).map((item) => (
+                     
                       <CTableRow>
-                        <CAvatar class="col-lg-5 col-md-5 col-sm-5 col-xs-5" size = "lg" src={item.Picture} />
+                        <CAvatar className="col-xl col-lg col-md col-sm" size = "xl" src={item.Picture} />
                         <CTableDataCell>
                           <div>
                             <strong>Name:</strong>  {item.FirstName} {item.LastName}
@@ -181,8 +196,8 @@ const Dashboard = () => {
                       </CTableRow>
                     ))
                   }
-                </CTableBody>
-              </CTable>
+                </MDBTableBody>
+              </MDBTable>
             </CCardBody>
           </CCard>
         </CCol>
