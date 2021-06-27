@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import queryString from 'query-string'
 import CIcon from '@coreui/icons-react'
-import { MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact';
+import { MDBTable, MDBTableBody, MDBTableHead, MDBInput } from 'mdbreact';
 import {
   CAvatar,
   CButton,
@@ -11,6 +11,7 @@ import {
   CCardFooter,
   CCol,
   CForm,
+  CFormCheck,
   CFormControl,
   CInputGroup,
   CProgress,
@@ -19,6 +20,7 @@ import {
   CTableHeaderCell,
   CTableRow,
 } from '@coreui/react'
+import { flagSet } from '@coreui/icons';
 
 require("es6-promise").polyfill();
 require("isomorphic-fetch");
@@ -46,12 +48,12 @@ const Dashboard = () => {
     fetch(`https://api.apispreadsheets.com/data/${account}/`)
       .then( res => {
         res.json().then(data => {
+          setData(data.data);
           setMess(data.data[0].TotalMessaged);
           setTR(data.data[0].TotalRequests);
           setTA(data.data[0].TotalConnections);
           setSP(((data.data[0].TotalConnections / data.data[0].TotalRequests) * 100.0).toFixed(2))
           setRR(((data.data[0].TotalMessaged / data.data[0].TotalConnections) * 100).toFixed(2))
-          setData(data.data);
         })    
     })
   }
@@ -131,28 +133,25 @@ const Dashboard = () => {
             </CInputGroup>
             <CCardBody>
               <MDBTable scrollY maxHeight="500px" hover responsive align="middle" className="mb-0 border">
-                <MDBTableHead color="light">
-                  <CTableRow>
-                    <CTableHeaderCell>
-                        <CIcon name='cil-people'></CIcon>
-                    </CTableHeaderCell>
-                    <CTableHeaderCell>
-                        <span>User Information</span>
-                      </CTableHeaderCell>
-                    <CTableHeaderCell className="text-center">
-                      <span>Connected</span>
-                    </CTableHeaderCell>
-                    <CTableHeaderCell className="text-center">LinkedIn Link</CTableHeaderCell>
+                <MDBTableHead color="light" className="text-left">
+                  <CTableRow > 
+                    <CTableHeaderCell><CIcon name='cil-people'></CIcon></CTableHeaderCell>
+                    <CTableHeaderCell ><span>User Information</span></CTableHeaderCell>
+                    <CTableHeaderCell ><span>Connected</span></CTableHeaderCell>
+                    <CTableHeaderCell >LinkedIn Link</CTableHeaderCell>
+                    <CTableHeaderCell >Message Thread</CTableHeaderCell>
                     <CTableHeaderCell>Lead Last Message</CTableHeaderCell>
                   </CTableRow>
+
                 </MDBTableHead>
 
 
                 <MDBTableBody background="yellow">
                   {
+
                     Object.values(searchTable(data)).map((item) => (
                      
-                      <CTableRow>
+                      <CTableRow className="text-left">
                         <CAvatar className="col-xl col-lg col-md col-sm" size = "xl" src={item.Picture} />
                         <CTableDataCell>
                           <div>
@@ -168,17 +167,21 @@ const Dashboard = () => {
                             </span>
                             <br />
                             <span>
-                              <strong>Connected On:</strong> {item.ConnectionDate}
+                              <strong>Connected On:</strong> {item.ConnectionDateProperFormat}
                             </span>
                           </div>
                         </CTableDataCell>
-                        <CTableDataCell className="text-center">
-                          <strong>{item.Connected}</strong>
+                        <CTableDataCell>
+                          <MDBInput type="checkbox" checked={item.Connected} />
                         </CTableDataCell>
-
-                        <CTableDataCell className='text-center'> 
-                          <a href={item.ProfileLink}>
+                        <CTableDataCell> 
+                          <a target="_blank" href={item.ProfileLink}>
                             <CIcon size="xl" name="cib-linkedin" />
+                          </a>
+                        </CTableDataCell>
+                        <CTableDataCell>
+                          <a target="_blank" href={item.MessageURL}>
+                            <CIcon size="xl" name="cil-comment-square" />
                           </a>
                         </CTableDataCell>
                         <CTableDataCell>
