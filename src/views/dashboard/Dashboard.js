@@ -132,8 +132,8 @@ const Dashboard = () => {
             </CInputGroup>
             <CCardBody>
               <MDBTable scrollY maxHeight="500px" hover responsive align="middle" className="mb-0 border">
-                <MDBTableHead color="dark" className="text-left">
-                  <CTableRow className="fix-head"> 
+                <MDBTableHead color="light" className="text-left">
+                  <CTableRow> 
                     <CTableHeaderCell><CIcon name='cil-people'></CIcon></CTableHeaderCell>
                     <CTableHeaderCell><span>Contact Information</span></CTableHeaderCell>
                     <CTableHeaderCell><span>Connected</span></CTableHeaderCell>
@@ -145,7 +145,7 @@ const Dashboard = () => {
                 </MDBTableHead>
 
 
-                <MDBTableBody className="fix-body">
+                <MDBTableBody>
                   {
                     Object.values(searchTable(data.slice(2, data.length))).map((item) => (
                      
