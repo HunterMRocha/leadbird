@@ -20,7 +20,6 @@ import {
   CTableHeaderCell,
   CTableRow,
 } from '@coreui/react'
-import { flagSet } from '@coreui/icons';
 
 require("es6-promise").polyfill();
 require("isomorphic-fetch");
@@ -147,6 +146,7 @@ const Dashboard = () => {
 
 
                 <MDBTableBody background="yellow">
+                  {/* <script src="./dashboard.css"></script> */}
                   {
 
                     Object.values(searchTable(data.slice(1, data.length))).map((item) => (
@@ -154,15 +154,15 @@ const Dashboard = () => {
                       <CTableRow className="text-left">
                         <CAvatar className="col-xl col-lg col-md col-sm" size = "xl" src={item.Picture} />
                         <CTableDataCell>
-                          <div>
+                          <div className="user-info">
                             <strong>Name:</strong>  {item.FirstName} {item.LastName}
                           </div>
-                          <div className="large text-large-emphasis">
+                          <div className="user-info">
                             <span>
                               <strong>Company:</strong> {item.CompanyName}
                             </span>
                             <br />
-                            <span>
+                            <span className="fixed-width"> 
                               <strong>Title:</strong> {item.LeadTitle}
                             </span>
                             <br />
@@ -186,11 +186,11 @@ const Dashboard = () => {
                         </CTableDataCell>
                         <CTableDataCell>
                           <CForm>
-                            <div>
+                            <div className="box-width">
                               <CFormControl
                                 component="textarea"
                                 id="exampleFormControlTextarea1"
-                                rows="6"
+                                rows="5"
                                 placeholder="No Message Available"
                               >{item.MessageResponse}</CFormControl>
                             </div>
