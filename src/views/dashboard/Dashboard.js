@@ -120,9 +120,9 @@ const Dashboard = () => {
           value={"campaign title: " + campaign}
           size="lg"
         />
-        <CButton type="button" color="primary" id="button-addon2">
+        {/* <CButton type="button" color="primary" id="button-addon2">
           <strong>Download Data</strong>
-        </CButton>
+        </CButton> */}
       </CInputGroup>
       
       <CRow>
@@ -136,10 +136,10 @@ const Dashboard = () => {
                 <MDBTableHead color="light" className="text-left">
                   <CTableRow > 
                     <CTableHeaderCell><CIcon name='cil-people'></CIcon></CTableHeaderCell>
-                    <CTableHeaderCell ><span>User Information</span></CTableHeaderCell>
-                    <CTableHeaderCell ><span>Connected</span></CTableHeaderCell>
-                    <CTableHeaderCell >LinkedIn Link</CTableHeaderCell>
-                    <CTableHeaderCell >Message Thread</CTableHeaderCell>
+                    <CTableHeaderCell><span>User Information</span></CTableHeaderCell>
+                    <CTableHeaderCell><span>Connected</span></CTableHeaderCell>
+                    <CTableHeaderCell>LinkedIn Link</CTableHeaderCell>
+                    <CTableHeaderCell>Message Thread</CTableHeaderCell>
                     <CTableHeaderCell>Lead Last Message</CTableHeaderCell>
                   </CTableRow>
 
@@ -149,7 +149,7 @@ const Dashboard = () => {
                 <MDBTableBody background="yellow">
                   {
 
-                    Object.values(searchTable(data)).map((item) => (
+                    Object.values(searchTable(data.slice(1, data.length))).map((item) => (
                      
                       <CTableRow className="text-left">
                         <CAvatar className="col-xl col-lg col-md col-sm" size = "xl" src={item.Picture} />
@@ -190,7 +190,7 @@ const Dashboard = () => {
                               <CFormControl
                                 component="textarea"
                                 id="exampleFormControlTextarea1"
-                                rows="4"
+                                rows="6"
                                 placeholder="No Message Available"
                               >{item.MessageResponse}</CFormControl>
                             </div>
