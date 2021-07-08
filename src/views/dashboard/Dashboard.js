@@ -147,7 +147,7 @@ const Dashboard = () => {
 
                 <MDBTableBody className="fix-body">
                   {
-                    Object.values(searchTable(data.slice(1, data.length))).map((item) => (
+                    Object.values(searchTable(data.slice(2, data.length))).map((item) => (
                      
                       <CTableRow className="text-left">
                         <CAvatar className="col-xl col-lg col-md col-sm" size = "xl" src={item.Picture} />
