@@ -11,3 +11,22 @@
 .box-width {
  width: 300px
 }
+
+.fix-head {
+	position: fixed;
+	top:0;
+}
+
+.fix-body {
+	position:sticky;
+	top:0;
+}
+
+.button-format {
+	// word-wrap:break-word;
+	max-width: 100%;
+	width:200px;
+	height:90px;
+	// max-height: 100%;
+
+}

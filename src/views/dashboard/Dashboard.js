@@ -69,40 +69,40 @@ const Dashboard = () => {
 
   return (
     <>
-      <CCard className="mb-5">
+      <CCard className="lg-5">
         <CCardFooter>
           <CRow className="text-center">
-            <CCol md sm="12" className="mb-sm-2 mb-0">
-              <CButton color="dark" variant="outline" size="lg">
-                <div className="text-large-emphasis">Total Connection Requests</div>
+            <CCol lg md sm="12" className="lg-mb-sm-2 mb-0">
+              <CButton className="button-format" color="dark" variant="outline" size="lg">
+                <div className="text-large-emphasis">Connection Requests</div>
                 <strong>{totalRequests} Requests</strong>
-                <CProgress thin className="mt-3" precision={1} color="success" value={100} />
+                <CProgress thin className="mt-2" precision={1} color="success" value={100} />
               </CButton>
             </CCol>
-            <CCol md sm="12" className="mb-sm-2 mb-0">
-              <CButton color="dark" variant="outline" size="lg">
-                <div className="text-medium-emphasis">Total Connections Accepted</div>
+            <CCol lg md sm="12" className="lg-mb-sm-2 mb-0">
+              <CButton className="button-format" color="dark" variant="outline" size="lg">
+                <div className="text-medium-emphasis">Connections Accepted</div>
                 <strong>{totalAccepted} Accepted</strong>
                 <CProgress thin className="mt-2" precision={1} color="info" value={successPerc} />
               </CButton>
             </CCol>
-            <CCol md sm="12" className="mb-sm-2 mb-0">
-              <CButton color="dark" variant="outline" size="lg">
-                <div className="text-medium-emphasis">Connection Success Percent</div>
+            <CCol lg md sm="12" className="lg-mb-sm-2 mb-0">
+              <CButton className="button-format"  color="dark" variant="outline" size="lg">
+                <div className="text-medium-emphasis">Connection Success Rate</div>
                 <strong>{successPerc}%</strong>
                 <CProgress thin className="mt-2" precision={1} color="warning" value={successPerc} />
               </CButton>
             </CCol>
-            <CCol md sm="12" className="mb-sm-2 mb-0">
-              <CButton color="dark" variant="outline" size="lg">
-                <div className="text-medium-emphasis">Total Messages Returned</div>
+            <CCol lg md sm="12" className="lg-mb-sm-2 mb-0">
+              <CButton className="button-format" color="dark" variant="outline" size="lg">
+                <div className="text-medium-emphasis">Messages Returned</div>
                 <strong>{totalMessaged} Messaged</strong>
                 <CProgress thin className="mt-2" precision={1} color="danger" value={totalMessaged} />
               </CButton>
             </CCol>
-            <CCol md sm="12" className="mb-sm-2 mb-0">
-              <CButton color="dark" variant="outline" size="lg">
-                <div className="text-medium-emphasis">Message Response Percent</div>
+            <CCol lg md sm="12" className="lg-mb-sm-2 mb-0">
+              <CButton className="button-format"  color="dark" variant="outline" size="lg">
+                <div className="text-medium-emphasis">Message Response Rate</div>
                 <strong>{responseRate}%</strong>
                 <CProgress thin className="mt-2" precision={1} value={responseRate} />
               </CButton>
@@ -132,10 +132,10 @@ const Dashboard = () => {
             </CInputGroup>
             <CCardBody>
               <MDBTable scrollY maxHeight="500px" hover responsive align="middle" className="mb-0 border">
-                <MDBTableHead color="light" className="text-left">
-                  <CTableRow > 
+                <MDBTableHead color="dark" className="text-left">
+                  <CTableRow className="fix-head"> 
                     <CTableHeaderCell><CIcon name='cil-people'></CIcon></CTableHeaderCell>
-                    <CTableHeaderCell><span>User Information</span></CTableHeaderCell>
+                    <CTableHeaderCell><span>Contact Information</span></CTableHeaderCell>
                     <CTableHeaderCell><span>Connected</span></CTableHeaderCell>
                     <CTableHeaderCell>LinkedIn Link</CTableHeaderCell>
                     <CTableHeaderCell>Message Thread</CTableHeaderCell>
@@ -145,10 +145,8 @@ const Dashboard = () => {
                 </MDBTableHead>
 
 
-                <MDBTableBody background="yellow">
-                  {/* <script src="./dashboard.css"></script> */}
+                <MDBTableBody className="fix-body">
                   {
-
                     Object.values(searchTable(data.slice(1, data.length))).map((item) => (
                      
                       <CTableRow className="text-left">
