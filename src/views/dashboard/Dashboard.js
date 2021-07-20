@@ -11,7 +11,6 @@ import {
   CCardFooter,
   CCol,
   CForm,
-  CFormCheck,
   CFormControl,
   CInputGroup,
   CProgress,
@@ -30,7 +29,7 @@ const Dashboard = () => {
 
 
   const { search } = useLocation();
-  const { client, account, campaign } = queryString.parse(search);
+  const { account, campaign } = queryString.parse(search);
 
   const [data, setData] = useState([]);
   const [q, setQ] = useState("");
@@ -147,7 +146,7 @@ const Dashboard = () => {
 
                 <MDBTableBody>
                   {
-                    Object.values(searchTable(data.slice(2, data.length))).map((item) => (
+                    Object.values(searchTable(data.slice(1, data.length))).map((item) => (
                      
                       <CTableRow className="text-left">
                         <CAvatar className="col-xl col-lg col-md col-sm" size = "xl" src={item.Picture} />
