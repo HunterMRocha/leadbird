@@ -13,6 +13,7 @@ import {
   CFormControl,
   CInputGroup,
   CProgress,
+  CPopover,
   CRow,
   CTableDataCell,
   CTableHeaderCell,
