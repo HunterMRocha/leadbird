@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import queryString from 'query-string'
 import CIcon from '@coreui/icons-react'
-import { ProgressBar, Button } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { MDBTable, MDBTableBody, MDBTableHead, MDBInput } from 'mdbreact';
 import {
   CAvatar,
