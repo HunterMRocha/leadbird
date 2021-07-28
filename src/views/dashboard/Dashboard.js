@@ -13,7 +13,6 @@ import {
   CFormControl,
   CInputGroup,
   CProgress,
-  CPopover,
   CRow,
   CTableDataCell,
   CTableHeaderCell,
@@ -54,7 +53,7 @@ const Dashboard = () => {
     fetch(`https://api.apispreadsheets.com/data/${account}/`)
       .then( res => {
         res.json().then(data => {
-          setVal(1);
+          setVal(0);
           setData(data.data);
           setMess(data.data[0].TotalMessaged);
           setTR(data.data[0].TotalRequests);
