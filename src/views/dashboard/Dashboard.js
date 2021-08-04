@@ -70,12 +70,11 @@ const Dashboard = () => {
   }, []);
 
   function searchTable(rows){
+    console.log(filterVal);
     if (filterVal === 1){
-      // console.log(filterVal);
-      // console.log("test len:" , rows.filter(row => row.MessageTime).length);
-      if(rows.filter(row => row.MessageTime).length === 1){
-        return rows.filter(row => row.MessageTime)
-      }else{
+      if(totalMessaged == 1){
+        return rows.slice().filter(row => row.MessageTime)
+      }else {
         return rows.slice().sort((a,b) => new Date(b.MessageTime) - new Date(a.MessageTime));
       }
     }
