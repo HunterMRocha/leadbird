@@ -70,14 +70,13 @@ const Dashboard = () => {
   }, []);
 
   function searchTable(rows){
-    console.log(filterVal);
-    if (filterVal === 1){
-      if(totalMessaged == 1){
-        return rows.slice().filter(row => row.MessageTime)
-      }else {
-        return rows.slice().sort((a,b) => new Date(b.MessageTime) - new Date(a.MessageTime));
-      }
+    if (filterVal === 1 && totalMessaged === 1){
+        console.log("1 message");
+        return rows.slice().filter(row => row.MessageTime);
+    }else if(filterVal === 1 && totalMessaged > 1) {
+        return rows.slice().sort((a,b) => a.MessageTime - b.MessageTime);
     }
+    console.log("normal filter");
     return rows.filter(row => row.FirstName.toLowerCase().indexOf(FNQuery) > -1);
 
   }
@@ -93,7 +92,7 @@ const Dashboard = () => {
               <CButton className="button-format" color="dark" variant="outline" size="lg" onClick={filterByRecentConnections}>
                 <div className="text-large-emphasis">Connection Requests</div>
                 <strong>{totalRequests} Requests</strong>
-                <CProgress thin className="mt-2" precision={1} color="success" value={100} />
+                {/* <CProgress thin className="mt-2" precision={1} color="success" value={100} /> */}
               </CButton>
             </CCol>
             <CCol lg md>
@@ -185,6 +184,10 @@ const Dashboard = () => {
                             <span>
                               <strong>Connected On:</strong> {item.ConnectionDateProperFormat}
                             </span>
+                            {/* <br />
+                            <span>
+                              <strong>Messaged On: </strong> {item.MessageTime}
+                            </span> */}
                           </div>
                         </CTableDataCell>
                         <CTableDataCell>
