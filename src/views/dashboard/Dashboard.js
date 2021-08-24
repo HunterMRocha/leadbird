@@ -74,7 +74,7 @@ const Dashboard = () => {
         console.log("1 message");
         return rows.slice().filter(row => row.MessageTime);
     }else if(filterVal === 1 && totalMessaged > 1) {
-        return rows.slice().sort((a,b) => a.MessageTime - b.MessageTime);
+        return rows.slice().sort((a,b) => b.MessageTime - a.MessageTime);
     }
     console.log("normal filter");
     return rows.filter(row => row.FirstName.toLowerCase().indexOf(FNQuery) > -1);
