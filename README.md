@@ -64,11 +64,29 @@ Orion-React#V1.0.0
 └── package.json
 ```
 
-## User Instructions:
+# User Instructions:
+
+
+### Accounts Needed: 
+<[apispreadhsheets.com](https://apispreadsheets.com/)>
+
+* this website is used to help turn a google sheet into a database that can be used for the web app. Depending on how many campaigns you are running you might need different plans. Rows are the number of google sheet rows & requests are the amount of times the google sheet data is requested
+
+### Steps: 
+* Create copy of this spreadsheet: 
+<https://docs.google.com/spreadsheets/d/14YRlcU-aPVKP-cKOv0ubL4wAOVL4IdDtTAC3_o6TJ1M/edit#gid=626557051>
+
+* Head to <[apispreadhsheets.com](https://apispreadsheets.com/)> and click 'upload'
+* Click Google Sheet
+* Choose the google sheet template listed above 
+* Locate the API URL and copy the 5 digits(unique number) at the end of the link. It should be like the picture below, and you would just need to copy the unique number at the end. In this instance that would be 14617.
+* Change the fields that are all caps to match whatever you want to name your campaign and whatever 5 digit number you received on the api webiste
+https://leadbird-data.web.app/#/dashboard?account=UNIQUE_NUMBER&campaign=CAMPAIGN_NAME
+* Note: Make sure on the api website the box 'API Private?' in unchecked
 
 
 
-## Creator
+# Creator
 **Hunter Macias**
 * <https://github.com/HunterMRocha>
 * <https://www.youtube.com/channel/UCehlaH65-4g7NywRWX0MlkA>
